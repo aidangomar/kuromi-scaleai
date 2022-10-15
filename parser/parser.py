@@ -6,6 +6,7 @@
 
 # f.close()
 import csv
+import utm
 
 f = open('mariupol-json.json', 'w')
 f.write('{' + '\n')
@@ -16,8 +17,11 @@ with open('mariupol.csv', 'r') as file:
     for row in spamreader:
         row[0] = row[0].strip('[')
         row[3] = row[3].strip(']')
-        pt = [(float(row[0]) + float(row[2])) / 2,
-              (float(row[1]) + float(row[3])) / 2]
+        point_1 = utm.to_latlon(float(row[0]), float(row[1]), 37, 'T')
+        point_2 = utm.to_latlon(float(row[2]), float(row[3]), 37, 'T')
+        pt = [(point_1[0] + point_2[0]) / 2,
+              (point_1[1] + point_2[1]) / 2,
+              ]
         f.write('{' + '\n')
         f.write("\"type\": \"Feature\"," + '\n')
         f.write("\"properties\": {")
