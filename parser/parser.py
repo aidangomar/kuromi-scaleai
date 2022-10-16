@@ -28,7 +28,7 @@ with open('mariupol.csv', 'r') as file:
         f.write("\"properties\": {")
         f.write("\"title\": \"" + str(c) + "\",")
         c += 1
-        f.write("\"description\": \"" + row[1] + "\"")
+        f.write("\"description\": \"" + row[4] + "\"")
         f.write('\n')
         f.write('},')
         f.write('\n')
